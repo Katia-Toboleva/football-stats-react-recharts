@@ -60,6 +60,9 @@ module.exports = ({ NODE_ENV }) => ({
   },
   resolve: {
     extensions: ['.js', '.jsx'],
+    alias: {
+      '@components': path.resolve('./client/app/components'),
+    },
   },
   devServer: {
     publicPath: '/dist/',

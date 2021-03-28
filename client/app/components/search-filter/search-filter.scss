@@ -1,0 +1,29 @@
+.search-filter {
+  padding: 20px 40px;
+  background-color: rgb(252, 252, 252);
+  display: flex;
+  position: relative;
+  width: 100%;
+  box-shadow: 0 0 4px 0 rgb(85, 85, 85);
+
+  &__content {
+    position: relative;
+  }
+
+  &__icon {
+    padding-right: 20px;
+  }
+
+  &__field {
+    position: absolute;
+    top: 0;
+
+    input {
+      font-weight: 400;
+      font-size: 24px;
+      outline: none;
+      background: none;
+      display: block;
+    }
+  }
+}

@@ -1,24 +1,23 @@
 import React from 'react';
 import { Group } from '@visx/group';
-import letterFrequency, { LetterFrequency } from '@visx/mock-data/lib/mocks/letterFrequency';
 import { scaleLinear } from '@visx/scale';
 import { Point } from '@visx/point';
 import { Line, LineRadial } from '@visx/shape';
 
 const orange = '#ff9933';
-export const pumpkin = '#f5810c';
+const pumpkin = '#f5810c';
 const silver = '#d9d9d9';
-export const background = '#FAF7E9';
-
+const background = '#FAF7E9';
 const degrees = 360;
-const data = letterFrequency.slice(2, 12);
+const defaultMargin = {
+  top: 40, left: 80, right: 80, bottom: 80,
+};
 
 const y = (d) => d.frequency;
 
-const genAngles = (length) =>
-  [...new Array(length + 1)].map((_, i) => ({
-    angle: i * (degrees / length),
-  }));
+const genAngles = (length) => [...new Array(length + 1)].map((_, i) => ({
+  angle: i * (degrees / length),
+}));
 
 const genPoints = (length, radius) => {
   const step = (Math.PI * 2) / length;
@@ -47,9 +46,9 @@ const genPolygonPoints = (
   return { points, pointString };
 };
 
-const defaultMargin = { top: 40, left: 80, right: 80, bottom: 80 };
-
-const Chart = ({ width, height, levels = 5, margin = defaultMargin }) => {
+const Chart = ({
+  width, height, levels = 5, margin = defaultMargin, data,
+}) => {
   const xMax = width - margin.left - margin.right;
   const yMax = height - margin.top - margin.bottom;
   const radius = Math.min(xMax, yMax) / 2;

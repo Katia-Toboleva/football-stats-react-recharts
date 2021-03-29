@@ -5,6 +5,7 @@ import teamData from './mocks/team-data.json';
 import { fetchResults } from './utilities/mock-fn';
 import { debounce } from 'lodash';
 import Chart1 from './components/chart'
+import Filters from './components/filters';
 
 import './reset.scss';
 
@@ -35,11 +36,13 @@ const App = () => {
 
   return (
     <>
-      <SearchFilter
+      {/* <SearchFilter
         placeholder="player's name"
         fullWord=""
         onChange={handleSearchFilterChange}
-      />
+      /> */}
+
+      <Filters />
 
       {fetchResultsRequestStatus === 'pending' && (
         <div>Loading...</div>

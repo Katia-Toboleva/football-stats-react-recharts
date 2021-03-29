@@ -4,21 +4,18 @@ import ParentSize from '@visx/responsive/lib/components/ParentSize';
 import Chart from '../chart';
 import statData from '../../mocks/stat-data.json';
 
-const params = (Object.values(statData[0])).splice(3);
+const ChartContainer = ({ searchResult }) => {
+  const convertedData = (Object.entries(searchResult[0]).reduce((acc, currentItem) => [...acc, {
+    axis: currentItem[0],
+    value: currentItem[1],
+  }], [])).splice(4);
 
-const ChartContainer = ({ searchResult }) => (
-  <>
-    <ParentSize>
-      {({ width }) => (
-        <Chart
-          width={width}
-          height={650}
-          data={params}
-          searchResult={searchResult}
-        />
-      )}
-    </ParentSize>
-  </>
-);
+  return (
+    <Chart
+      data={convertedData}
+    />
+
+  );
+};
 
 export default ChartContainer;

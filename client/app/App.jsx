@@ -4,19 +4,9 @@ import SearchFilter from './components/search-filter';
 import teamData from './mocks/team-data.json';
 import { fetchResults } from './utilities/mock-fn';
 import { debounce } from 'lodash';
+import Chart1 from './components/chart'
 
 import './reset.scss';
-
-const results = teamData.map((item) => {
-  const team = item.team_name.split(' ');
-  const suggestion = teamData.find((name) => team.indexOf(name) !== -1);
-
-  return {
-    ...item,
-    team,
-    suggestion,
-  };
-});
 
 const App = () => {
   const [fetchResultsRequestStatus, setRequest] = useState(null);
@@ -43,15 +33,11 @@ const App = () => {
     fetchSearchResults(searchValue);
   }, 200);
 
-  // const handleSearchFilterChange = (searchValue) => {
-  //   fetchSearchResults(searchValue);
-  // };
-
   return (
     <>
       <SearchFilter
         placeholder="player's name"
-        fullWord={results[0].suggestion || ''}
+        fullWord=""
         onChange={handleSearchFilterChange}
       />
 
@@ -64,7 +50,9 @@ const App = () => {
       )}
 
       {fetchResultsRequestStatus === 'success' && !!searchResult.length && (
-        <ChartContainer searchResult={searchResult} />
+        <ChartContainer
+          searchResult={searchResult}
+        />
       )}
     </>
   );

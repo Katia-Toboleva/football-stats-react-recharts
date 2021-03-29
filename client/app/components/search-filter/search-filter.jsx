@@ -45,12 +45,16 @@ const SearchFilter = ({ onChange, placeholder, fullWord }) => {
             </div>
             <div className={styles['search-filter__text']}>
               {(!value && placeholder) && (
-                <Text size="medium" weight="regular" color="light-gray" text={placeholder} />
+                <Text size="medium" weight="regular" color="light-gray">
+                  {placeholder}
+                </Text>
               )}
 
               {value && (
                 <>
-                  <Text size="medium" weight="regular">{value}</Text>
+                  <Text size="medium" weight="regular">
+                    {value}
+                  </Text>
                   <Text size="medium" weight="regular" color="light-gray">
                     {fullWord.toLowerCase().split(value.toLowerCase())[1]}
                   </Text>

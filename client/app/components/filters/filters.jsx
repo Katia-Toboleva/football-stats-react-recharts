@@ -6,10 +6,6 @@ import matchData from '../../mocks/match-data.json';
 import statData from '../../mocks/stat-data.json';
 
 const getPlayersData = (teamId, matchId) => {
-  if (!teamId && !matchId) {
-    return playerData;
-  }
-
   if (teamId && !matchId) {
     const playerPerTeamArr = statData.filter(item => item.team_id === teamId);
     const playerPerTeamIds = playerPerTeamArr.map(item => item.player_id);
@@ -27,11 +23,51 @@ const getPlayersData = (teamId, matchId) => {
   }
 
   if (teamId && matchId) {
-    const playerPerTeamArr = statData.filter(item => item.team_id === teamId && item.match_id === matchId);
-    const playerPerTeamIds = playerPerTeamArr.map(item => item.player_id);
-    const playersPerTeamData = playerPerTeamIds.map(id => playerData.find(item => item.player_id === id));
+    const playerPerTeamAndMatchArr = statData.filter(item => item.team_id === teamId && item.match_id === matchId);
+    const playerPerTeamAndMatchIds = playerPerTeamAndMatchArr.map(item => item.player_id);
+    const playersPerTeamAndMatchData = playerPerTeamAndMatchIds.map(id => playerData.find(item => item.player_id === id));
 
-    return playersPerTeamData;
+    return playersPerTeamAndMatchData;
+  }
+
+  return playerData;
+};
+
+const getTeamsData = (playerId, matchId) => {
+  if (playerId && !matchId) {
+    const teamPerPlayerArr = statData.filter(item => item.player_id === playerId);
+
+    if (!teamPerPlayerArr.length) {
+      return [];
+    }
+
+    const teamPerPlayerId = teamPerPlayerArr[0].team_id;
+    const teamPerPlayerData = teamData.find(item => item.team_id === teamPerPlayerId);
+    console.log([teamPerPlayerData]);
+
+    return [teamPerPlayerData];
+  }
+
+  if (!playerId && matchId) {
+    const teamPerMatchArr = statData.filter(item => item.match_id === matchId);
+    const teamPerMatchIds = teamPerMatchArr.map(item => item.team_id);
+    const reducedTeamPerMatchIds = teamPerMatchIds.reduce((acc, currentValue) => (acc.includes(currentValue) ? acc : [...acc, currentValue]), []);
+    const teamPerMatchArrData = reducedTeamPerMatchIds.map(id => teamData.find(item => item.team_id === id));
+
+    return teamPerMatchArrData;
+  }
+
+  if (playerId && matchId) {
+    const teamPerMatchAndPlayerArr = statData.filter(item => item.player_id === playerId && item.match_id === matchId);
+
+    if (!teamPerMatchAndPlayerArr.length) {
+      return [];
+    }
+
+    const teamPerMatchAndPlayerId = teamPerMatchAndPlayerArr[0].team_id;
+    const teamPerMatchAndPlayerData = teamData.find(item => item.team_id === teamPerMatchAndPlayerId);;
+
+    return [teamPerMatchAndPlayerData];
   }
 
   return teamData;
@@ -57,6 +93,7 @@ const Filters = () => {
   };
 
   const players = getPlayersData(teamId, matchId);
+  const teams = getTeamsData(playerId, matchId);
 
   return (
     <div className="filters">
@@ -71,8 +108,8 @@ const Filters = () => {
                 onChange={(event) => handleFilterChange(event.target.value, 'team')}
               >
                 <option value="">Select</option>
-                {teamData.map((teamObj) => (
-                  <option key={teamObj.team_id} value={teamObj.team_id}>
+                {teams.map((teamObj, index) => (
+                  <option key={index} value={teamObj.team_id}>
                     {teamObj.team_name}
                   </option>
                 ))}
@@ -90,8 +127,8 @@ const Filters = () => {
                 onChange={(event) => handleFilterChange(event.target.value, 'player')}
               >
                 <option value="">Select</option>
-                {players.map((playerObj) => (
-                  <option key={playerObj.player_id} value={playerObj.player_id}>
+                {players.map((playerObj, index) => (
+                  <option key={index} value={playerObj.player_id}>
                     {playerObj.player_name}
                   </option>
                 ))}
@@ -109,14 +146,14 @@ const Filters = () => {
                 onChange={(event) => handleFilterChange(event.target.value, 'match')}
               >
                 <option value="">Select</option>
-                {matchData.map((matchObj) => {
+                {matchData.map((matchObj, index) => {
                   const homeTeamId = matchObj.match_home_team_id;
                   const homeTeam = teamData.find(item => item.team_id === homeTeamId).team_name;
                   const awayTeamId = matchObj.match_away_team_id;
                   const awayTeam = teamData.find(item => item.team_id === awayTeamId).team_name;
 
                   return (
-                    <option key={matchObj.match_id} value={matchObj.match_id}>
+                    <option key={index} value={matchObj.match_id}>
                       {`${homeTeam} - ${awayTeam}: ${matchObj.match_date}`}
 
                     </option>

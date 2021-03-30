@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Row, Column } from '../grid';
 import Button from '../button';
 import { getPlayersData, getTeamsData, getMatchesData } from '../../utilities/filters-utilities';
+import styles from './filters.scss';
 
 const Filters = ({
   teamData,
@@ -55,10 +56,10 @@ const Filters = ({
   };
 
   return (
-    <div className="filters">
+    <div className={styles['filters']}>
       <Row>
         <Column>
-          <div className="team-filter">
+          <div className={styles['team-filter']}>
             <label htmlFor="team-filter">
               <select
                 id="team-filter"
@@ -77,7 +78,7 @@ const Filters = ({
           </div>
         </Column>
         <Column>
-          <div className="player-filter">
+          <div className={styles['player-filter']}>
             <label htmlFor="player-filter">
               <select
                 id="player-filter"
@@ -96,7 +97,7 @@ const Filters = ({
           </div>
         </Column>
         <Column>
-          <div className="match-filter">
+          <div className={styles['match-filter']}>
             <label htmlFor="match-filter">
               <select
                 id="match-filter"

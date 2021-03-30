@@ -37,7 +37,7 @@ const Filters = ({
       setPlayerId('');
       setMatchId('');
     }
-    
+
     if (filter === 'team') {
       setTeamId(Number(value));
     }
@@ -74,7 +74,7 @@ const Filters = ({
                 value={teamId}
                 onChange={(event) => handleFilterChange(event.target.value, 'team')}
               >
-                <option value="">Select</option>
+                <option value="">All teams</option>
                 {teams.map((teamObj, index) => (
                   <option key={index} value={teamObj.team_id}>
                     {teamObj.team_name}
@@ -94,7 +94,7 @@ const Filters = ({
                 value={playerId}
                 onChange={(event) => handleFilterChange(event.target.value, 'player')}
               >
-                <option value="">Select</option>
+                <option value="">All players</option>
                 {players.map((playerObj, index) => (
                   <option key={index} value={playerObj.player_id}>
                     {playerObj.player_name}
@@ -114,7 +114,7 @@ const Filters = ({
                 value={matchId}
                 onChange={(event) => handleFilterChange(event.target.value, 'match')}
               >
-                <option value="">Select</option>
+                <option value="">All matches</option>
                 {!!matches.length && matches.map((matchObj, index) => {
                   const homeTeamId = matchObj.match_home_team_id;
                   const homeTeam = teamData.find(item => item.team_id === homeTeamId).team_name;

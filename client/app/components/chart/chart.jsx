@@ -10,7 +10,7 @@ import {
 const Chart = ({ data, teamColor }) => (
   <RadarChart
     cx={300}
-    cy={250}
+    cy={220}
     outerRadius={150}
     width={550}
     height={500}

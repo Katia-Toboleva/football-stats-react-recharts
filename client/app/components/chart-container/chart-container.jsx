@@ -1,5 +1,4 @@
 import React from 'react';
-
 import Chart from '../chart';
 
 const ChartContainer = ({ searchResult, teamData }) => {
@@ -12,13 +11,11 @@ const ChartContainer = ({ searchResult, teamData }) => {
     value: currentItem[1],
   }], [])).splice(5);
 
-  console.log(convertedData)
   return (
     <Chart
       data={convertedData}
       teamColor={team_first_color}
     />
-
   );
 };
 

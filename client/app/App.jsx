@@ -7,6 +7,8 @@ import statData from './mocks/stat-data.json';
 import ChartContainer from './components/chart-container';
 import Filters from './components/filters';
 import DetailsContainer from './components/details-container';
+import Spinner from './components/spinner';
+import Text from './components/text';
 
 import styles from './reset.scss';
 
@@ -59,12 +61,25 @@ const App = () => {
           onClick={handleSearchClick}
         />
 
+        {/* <Spinner /> */}
+
         {fetchResultsRequestStatus === 'pending' && (
-          <div>Loading...</div>
+          <>
+            <Spinner />
+            <Text
+              size="medium"
+              color="dark-blue"
+              text="Loading..."
+             />
+          </>
         )}
 
         {fetchResultsRequestStatus === 'rejected' && (
-          <div>We cannot reach the server, please try again</div>
+          <Text
+            size="medium"
+            color="dark-blue"
+            text="We cannot reach the server, please try again"
+          />
         )}
 
         {(fetchResultsRequestStatus === 'success') && (

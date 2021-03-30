@@ -7,7 +7,7 @@ const getFilteredResults = ({ teamId, playerId, matchId }) => {
 };
 
 export const fetchResults = (data) => {
-  const delay = Math.floor(Math.random() * 3000) + 1;
+  const delay = Math.floor(Math.random() * 4000) + 1;
   const failureRandomNumber = Math.floor(Math.random() * 10) + 1;
 
   const results = getFilteredResults(data);

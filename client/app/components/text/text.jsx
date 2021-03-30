@@ -11,11 +11,11 @@ const Text = (props) => {
     center,
     cases,
     weight,
-    children,
+    text,
   } = props;
 
   return (
-    <div className={cx('text', {
+    <span className={cx('text', {
       [`text--size-${size}`]: size,
       [`text--color-${color}`]: color,
       [`text--cases-${cases}`]: cases,
@@ -23,8 +23,8 @@ const Text = (props) => {
       'text--center': center,
     })}
     >
-      {children}
-    </div>
+      {text}
+    </span>
   );
 };
 

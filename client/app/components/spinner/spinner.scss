@@ -1,0 +1,32 @@
+.spinner-container {
+  position: relative;
+}
+
+.spinner {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  z-index: 0;
+  animation: spinner 1s infinite linear;
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+    border: 1px solid rgba(255, 255, 255, 0.377);
+    border-left-color: rgb(0, 4, 53);
+  }
+
+  50% {
+    transform: rotate(180deg);
+    border: 1px solid rgb(0, 4, 53);
+  }
+
+  100% {
+    transform: rotate(360deg);
+    border: 1px solid rgba(255, 255, 255, 0.377);
+  }
+}

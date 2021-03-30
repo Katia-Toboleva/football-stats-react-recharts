@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import ChartContainer from './components/chart-container';
 import { fetchResults } from './utilities/mock-fn';
 import teamData from './mocks/team-data.json';
 import playerData from './mocks/player-data.json';
 import matchData from './mocks/match-data.json';
 import statData from './mocks/stat-data.json';
+import ChartContainer from './components/chart-container';
 import Filters from './components/filters';
+import DetailsContainer from './components/details-container';
 
 import './reset.scss';
 
@@ -66,9 +67,16 @@ const App = () => {
       )}
 
       {(fetchResultsRequestStatus === 'success') && (
-        <ChartContainer
-          searchResult={searchResult}
-        />
+        <>
+          <ChartContainer
+            searchResult={searchResult}
+          />
+          <DetailsContainer
+            searchResult={searchResult}
+            playerData={playerData}
+            teamData={teamData}
+          />
+        </>
       )}
     </>
   );

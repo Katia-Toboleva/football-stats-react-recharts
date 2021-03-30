@@ -12,9 +12,6 @@ import './reset.scss';
 const App = () => {
   const [fetchResultsRequestStatus, setRequest] = useState(null);
   const [searchResult, setSearchResult] = useState({});
-  const [team, setTeamId] = useState('');
-  const [player, setPlayerId] = useState('');
-  const [match, setMatchId] = useState('');
 
   useEffect(() => {
     const results = localStorage.getItem('results');
@@ -22,9 +19,6 @@ const App = () => {
     if (results) {
       const savedData = JSON.parse(results);
       setSearchResult(savedData);
-      setTeamId(savedData.team_id);
-      setPlayerId(savedData.player_id);
-      setMatchId(savedData.match_id);
       setRequest('success');
     }
   }, []);
@@ -51,14 +45,9 @@ const App = () => {
     fetchSearchResults({ teamId, playerId, matchId });
   };
 
-  console.log(searchResult);
-
   return (
     <>
       <Filters
-        team={team}
-        player={player}
-        match={match}
         playerValue={searchResult.player_id}
         matchValue={searchResult.match_id}
         teamData={teamData}

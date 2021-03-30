@@ -15,7 +15,7 @@ const Text = (props) => {
   } = props;
 
   return (
-    <span className={cx('text', {
+    <div className={cx('text', {
       [`text--size-${size}`]: size,
       [`text--color-${color}`]: color,
       [`text--cases-${cases}`]: cases,
@@ -24,7 +24,7 @@ const Text = (props) => {
     })}
     >
       {children}
-    </span>
+    </div>
   );
 };
 

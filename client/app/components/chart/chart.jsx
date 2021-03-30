@@ -5,6 +5,7 @@ import {
   PolarGrid,
   PolarAngleAxis,
   PolarRadiusAxis,
+  Tooltip,
 } from 'recharts';
 
 const Chart = ({ data, teamColor }) => (
@@ -18,13 +19,15 @@ const Chart = ({ data, teamColor }) => (
   >
     <PolarGrid />
     <PolarAngleAxis dataKey="axis" />
-    <PolarRadiusAxis />
+    <PolarRadiusAxis orientation="left" />
+    <Tooltip />
     <Radar
-      name="player"
+      name="total"
       dataKey="value"
       stroke={teamColor}
       fill={teamColor}
       fillOpacity={0.7}
+      dot
     />
   </RadarChart>
 );

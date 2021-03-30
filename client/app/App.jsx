@@ -1,19 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ChartContainer from './components/chart-container';
-import SearchFilter from './components/search-filter';
-import teamData from './mocks/team-data.json';
 import { fetchResults } from './utilities/mock-fn';
-import { debounce } from 'lodash';
-import Chart1 from './components/chart'
+import teamData from './mocks/team-data.json';
+import playerData from './mocks/player-data.json';
+import matchData from './mocks/match-data.json';
+import statData from './mocks/stat-data.json';
 import Filters from './components/filters';
 
 import './reset.scss';
 
 const App = () => {
   const [fetchResultsRequestStatus, setRequest] = useState(null);
-  const [searchResult, setSearchResult] = useState([]);
+  const [searchResult, setSearchResult] = useState({});
+
+  useEffect(() => {
+    const results = localStorage.getItem('results');
+    const savedData = JSON.parse(results);
+
+    if (results) {
+      setSearchResult(savedData);
+      setRequest('success');
+    }
+  }, []);
 
   const handleFetchResultsSuccess = (payload) => {
+    localStorage.setItem('results', JSON.stringify(payload));
     setRequest('success');
     setSearchResult(payload);
   };
@@ -22,27 +33,29 @@ const App = () => {
     setRequest('rejected');
   };
 
-  const fetchSearchResults = (searchValue) => {
+  const fetchSearchResults = (data) => {
     setRequest('pending');
 
-    fetchResults(searchValue)
+    fetchResults(data)
       .then(handleFetchResultsSuccess)
       .catch(handleFetchResultsRejected);
   };
 
-  const handleSearchFilterChange = debounce((searchValue) => {
-    fetchSearchResults(searchValue);
-  }, 200);
+  const handleSearchClick = ({ teamId, playerId, matchId }) => {
+    fetchSearchResults({ teamId, playerId, matchId });
+  };
+
+  console.log(searchResult);
 
   return (
     <>
-      {/* <SearchFilter
-        placeholder="player's name"
-        fullWord=""
-        onChange={handleSearchFilterChange}
-      /> */}
-
-      <Filters />
+      <Filters
+        teamData={teamData}
+        playerData={playerData}
+        matchData={matchData}
+        statData={statData}
+        onClick={handleSearchClick}
+      />
 
       {fetchResultsRequestStatus === 'pending' && (
         <div>Loading...</div>
@@ -52,7 +65,7 @@ const App = () => {
         <div>We cannot reach the server, please try again</div>
       )}
 
-      {fetchResultsRequestStatus === 'success' && !!searchResult.length && (
+      {(fetchResultsRequestStatus === 'success') && (
         <ChartContainer
           searchResult={searchResult}
         />

@@ -64,6 +64,7 @@ const Filters = ({
               <select
                 id="team-filter"
                 name="team-filter"
+                className={styles['team-select']}
                 value={teamId}
                 onChange={(event) => handleFilterChange(event.target.value, 'team')}
               >
@@ -83,6 +84,7 @@ const Filters = ({
               <select
                 id="player-filter"
                 name="player-filter"
+                className={styles['player-select']}
                 value={playerId}
                 onChange={(event) => handleFilterChange(event.target.value, 'player')}
               >
@@ -102,6 +104,7 @@ const Filters = ({
               <select
                 id="match-filter"
                 name="match-filter"
+                className={styles['match-select']}
                 value={matchId}
                 onChange={(event) => handleFilterChange(event.target.value, 'match')}
               >

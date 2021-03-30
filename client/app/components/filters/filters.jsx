@@ -18,7 +18,7 @@ const Filters = ({
   const players = getPlayersData(teamId, matchId, statData, playerData);
   const teams = getTeamsData(playerId, matchId, statData, teamData);
   const matches = getMatchesData(teamId, playerId, statData, matchData);
-  const isActive = (teamId && playerId && matchId);
+  const isActive = (playerId && matchId);
 
   useEffect(() => {
     const results = localStorage.getItem('results');
@@ -54,7 +54,6 @@ const Filters = ({
   const handleSearchButtonClick = () => {
     if (isActive) {
       onClick({
-        teamId,
         playerId,
         matchId,
       });

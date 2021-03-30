@@ -1,4 +1,7 @@
 export const getPlayersData = (teamId, matchId, statData, playerData) => {
+  const playersIdsWithMatches = statData.map(item => item.player_id);
+  const playersWithMatches = playersIdsWithMatches.map(id => playerData.find(item => item.player_id === id));
+
   if (teamId && !matchId) {
     const playerPerTeamArr = statData.filter(item => item.team_id === teamId);
     const playerPerTeamIds = playerPerTeamArr.map(item => item.player_id);
@@ -23,7 +26,7 @@ export const getPlayersData = (teamId, matchId, statData, playerData) => {
     return playersPerTeamAndMatchData;
   }
 
-  return playerData;
+  return playersWithMatches;
 };
 
 export const getTeamsData = (playerId, matchId, statData, teamData) => {

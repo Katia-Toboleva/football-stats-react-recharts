@@ -44,8 +44,8 @@ const App = () => {
       .catch(handleFetchResultsRejected);
   };
 
-  const handleSearchClick = ({ teamId, playerId, matchId }) => {
-    fetchSearchResults({ teamId, playerId, matchId });
+  const handleSearchClick = ({ playerId, matchId }) => {
+    fetchSearchResults({ playerId, matchId });
   };
 
   return (

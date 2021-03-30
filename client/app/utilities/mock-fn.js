@@ -1,7 +1,7 @@
 import statData from '../mocks/stat-data.json';
 
-const getFilteredResults = ({ teamId, playerId, matchId }) => {
-  const filteredResults = statData.find(item => item.team_id === teamId && item.player_id === playerId && item.match_id === matchId);
+const getFilteredResults = ({ playerId, matchId }) => {
+  const filteredResults = statData.find(item =>  item.player_id === playerId && item.match_id === matchId);
 
   return filteredResults;
 };

@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Row, Column } from '../grid';
+import Button from '../button';
 import { getPlayersData, getTeamsData, getMatchesData } from '../../utilities/filters-utilities';
 
 const Filters = ({
-  team,
-  player,
-  match,
   teamData,
   playerData,
   matchData,
@@ -15,6 +13,22 @@ const Filters = ({
   const [teamId, setTeamId] = useState('');
   const [playerId, setPlayerId] = useState('');
   const [matchId, setMatchId] = useState('');
+
+  const players = getPlayersData(teamId, matchId, statData, playerData);
+  const teams = getTeamsData(playerId, matchId, statData, teamData);
+  const matches = getMatchesData(teamId, playerId, statData, matchData);
+  const isActive = (teamId && playerId && matchId);
+
+  useEffect(() => {
+    const results = localStorage.getItem('results');
+
+    if (results) {
+      const savedData = JSON.parse(results);
+      setTeamId(savedData.team_id);
+      setPlayerId(savedData.player_id);
+      setMatchId(savedData.match_id);
+    }
+  }, []);
 
   const handleFilterChange = (value, filter) => {
     if (filter === 'team') {
@@ -31,16 +45,14 @@ const Filters = ({
   };
 
   const handleSearchButtonClick = () => {
-    onClick({
-      teamId,
-      playerId,
-      matchId,
-    });
+    if (isActive) {
+      onClick({
+        teamId,
+        playerId,
+        matchId,
+      });
+    }
   };
-
-  const players = getPlayersData(teamId, matchId, statData, playerData);
-  const teams = getTeamsData(playerId, matchId, statData, teamData);
-  const matches = getMatchesData(teamId, playerId, statData, matchData);
 
   return (
     <div className="filters">
@@ -51,7 +63,7 @@ const Filters = ({
               <select
                 id="team-filter"
                 name="team-filter"
-                value={teamId || team}
+                value={teamId}
                 onChange={(event) => handleFilterChange(event.target.value, 'team')}
               >
                 <option value="">Select</option>
@@ -70,7 +82,7 @@ const Filters = ({
               <select
                 id="player-filter"
                 name="player-filter"
-                value={playerId || player}
+                value={playerId}
                 onChange={(event) => handleFilterChange(event.target.value, 'player')}
               >
                 <option value="">Select</option>
@@ -89,7 +101,7 @@ const Filters = ({
               <select
                 id="match-filter"
                 name="match-filter"
-                value={matchId || match}
+                value={matchId}
                 onChange={(event) => handleFilterChange(event.target.value, 'match')}
               >
                 <option value="">Select</option>
@@ -111,11 +123,12 @@ const Filters = ({
           </div>
         </Column>
         <Column>
-          <button
+          <Button
+            isDisabled={!isActive}
+            text="Search"
+            type="submit"
             onClick={handleSearchButtonClick}
-          >
-            Search
-          </button>
+          />
         </Column>
       </Row>
     </div>

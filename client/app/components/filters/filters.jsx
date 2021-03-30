@@ -11,10 +11,10 @@ const Filters = ({
   matchData,
   statData,
   onClick,
- }) => {
-  const [teamId, setTeamId] = useState(team);
-  const [playerId, setPlayerId] = useState(player);
-  const [matchId, setMatchId] = useState(match);
+}) => {
+  const [teamId, setTeamId] = useState('');
+  const [playerId, setPlayerId] = useState('');
+  const [matchId, setMatchId] = useState('');
 
   const handleFilterChange = (value, filter) => {
     if (filter === 'team') {
@@ -51,7 +51,7 @@ const Filters = ({
               <select
                 id="team-filter"
                 name="team-filter"
-                value={teamId}
+                value={teamId || team}
                 onChange={(event) => handleFilterChange(event.target.value, 'team')}
               >
                 <option value="">Select</option>
@@ -70,7 +70,7 @@ const Filters = ({
               <select
                 id="player-filter"
                 name="player-filter"
-                value={playerId}
+                value={playerId || player}
                 onChange={(event) => handleFilterChange(event.target.value, 'player')}
               >
                 <option value="">Select</option>
@@ -89,7 +89,7 @@ const Filters = ({
               <select
                 id="match-filter"
                 name="match-filter"
-                value={matchId}
+                value={matchId || match}
                 onChange={(event) => handleFilterChange(event.target.value, 'match')}
               >
                 <option value="">Select</option>

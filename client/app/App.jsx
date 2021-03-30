@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { isEmpty } from 'lodash';
 import { fetchResults } from './utilities/mock-fn';
 import teamData from './mocks/team-data.json';
 import playerData from './mocks/player-data.json';
@@ -28,8 +29,8 @@ const App = () => {
 
   const handleFetchResultsSuccess = (payload) => {
     localStorage.setItem('results', JSON.stringify(payload));
-    setRequest('success');
     setSearchResult(payload);
+    setRequest('success');
   };
 
   const handleFetchResultsRejected = () => {
@@ -61,6 +62,10 @@ const App = () => {
           onClick={handleSearchClick}
         />
 
+        {fetchResultsRequestStatus === null && (
+          <div>HELLO</div>
+        )}
+
         {fetchResultsRequestStatus === 'pending' && (
           <Spinner />
         )}
@@ -73,7 +78,7 @@ const App = () => {
           />
         )}
 
-        {(fetchResultsRequestStatus === 'success') && (
+        {(fetchResultsRequestStatus === 'success' && !isEmpty(searchResult)) && (
           <>
             <ChartContainer
               searchResult={searchResult}

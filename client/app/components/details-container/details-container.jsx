@@ -23,38 +23,44 @@ const DetailsContainer = ({ searchResult, playerData, teamData }) => {
       <Text size="medium" center>{player_name}</Text>
       <Row justifyContent="space-between">
         <Column>
-          <Text size="small">
-            <b>Country: </b>
-            {country_name}
-          </Text>
-          <Text size="small">
-            <b>Date of birth: </b>
-            {player_birth_date}
-          </Text>
+          <div className={styles['details-container__item']}>
+            <Text size="small">
+              <b>Country: </b>
+              {country_name}
+            </Text>
+            <Text size="small">
+              <b>Date of birth: </b>
+              {player_birth_date}
+            </Text>
+          </div>
         </Column>
         <Column>
-          <Text size="small">
-            <b>Team: </b>
-            {team_name}
-          </Text>
-          <Row>
-            <Column>
-              <Text size="small"><b>Colour: </b></Text>
-            </Column>
-            <Column>
-              <div style={style} />
-            </Column>
-          </Row>
+          <div className={styles['details-container__item']}>
+            <Text size="small">
+              <b>Team: </b>
+              {team_name}
+            </Text>
+            <Row>
+              <Column>
+                <Text size="small"><b>Colour: </b></Text>
+              </Column>
+              <Column>
+                <div style={style} />
+              </Column>
+            </Row>
+          </div>
         </Column>
         <Column>
-          <Text size="small">
-            <b>Minutes played: </b>
-            {searchResult.minutes_played}
-          </Text>
-          <Text size="small">
-            <b>Goals: </b>
-            {searchResult.goals}
-          </Text>
+          <div className={styles['details-container__item']}>
+            <Text size="small">
+              <b>Minutes played: </b>
+              {searchResult.minutes_played}
+            </Text>
+            <Text size="small">
+              <b>Goals: </b>
+              {searchResult.goals}
+            </Text>
+          </div>
         </Column>
       </Row>
 

@@ -3,15 +3,18 @@ import { Row, Column } from '../grid';
 import { getPlayersData, getTeamsData, getMatchesData } from '../../utilities/filters-utilities';
 
 const Filters = ({
+  team,
+  player,
+  match,
   teamData,
   playerData,
   matchData,
   statData,
   onClick,
  }) => {
-  const [teamId, setTeamId] = useState('');
-  const [playerId, setPlayerId] = useState('');
-  const [matchId, setMatchId] = useState('');
+  const [teamId, setTeamId] = useState(team);
+  const [playerId, setPlayerId] = useState(player);
+  const [matchId, setMatchId] = useState(match);
 
   const handleFilterChange = (value, filter) => {
     if (filter === 'team') {

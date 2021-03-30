@@ -61,17 +61,8 @@ const App = () => {
           onClick={handleSearchClick}
         />
 
-        {/* <Spinner /> */}
-
         {fetchResultsRequestStatus === 'pending' && (
-          <>
-            <Spinner />
-            <Text
-              size="medium"
-              color="dark-blue"
-              text="Loading..."
-             />
-          </>
+          <Spinner />
         )}
 
         {fetchResultsRequestStatus === 'rejected' && (

@@ -13,7 +13,7 @@ export const fetchResults = (data) => {
   const results = getFilteredResults(data);
 
   return new Promise((resolve, reject) => {
-    if (failureRandomNumber < 2) {
+    if (failureRandomNumber < 1) {
       reject();
 
       return;

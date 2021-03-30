@@ -1,0 +1,9 @@
+.details-container {
+  width: 100%;
+  background-color: rgba(155, 155, 155, 0.308);
+  padding: 20px 50px;
+
+  & >:first-child {
+    margin-bottom: 10px;
+  }
+}

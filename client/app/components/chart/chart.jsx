@@ -7,12 +7,12 @@ import {
   PolarRadiusAxis,
 } from 'recharts';
 
-const Chart = ({ data }) => (
+const Chart = ({ data, teamColor }) => (
   <RadarChart
     cx={300}
     cy={250}
     outerRadius={150}
-    width={500}
+    width={550}
     height={500}
     data={data}
   >
@@ -20,11 +20,11 @@ const Chart = ({ data }) => (
     <PolarAngleAxis dataKey="axis" />
     <PolarRadiusAxis />
     <Radar
-      name=""
+      name="player"
       dataKey="value"
-      stroke="#8884d8"
-      fill="#8884d8"
-      fillOpacity={0.6}
+      stroke={teamColor}
+      fill={teamColor}
+      fillOpacity={0.7}
     />
   </RadarChart>
 );

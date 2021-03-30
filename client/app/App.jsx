@@ -70,6 +70,7 @@ const App = () => {
         <>
           <ChartContainer
             searchResult={searchResult}
+            teamData={teamData}
           />
           <DetailsContainer
             searchResult={searchResult}

@@ -32,6 +32,12 @@ const Filters = ({
   }, []);
 
   const handleFilterChange = (value, filter) => {
+    if (!value) {
+      setTeamId('');
+      setPlayerId('');
+      setMatchId('');
+    }
+    
     if (filter === 'team') {
       setTeamId(Number(value));
     }
@@ -118,7 +124,6 @@ const Filters = ({
                   return (
                     <option key={index} value={matchObj.match_id}>
                       {`${homeTeam} - ${awayTeam}: ${matchObj.match_date}`}
-
                     </option>
                   );
                 })}

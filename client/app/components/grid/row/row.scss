@@ -22,6 +22,10 @@
     justify-content: center;
   }
 
+  &--justify-content-space-between {
+    justify-content: space-between;
+  }
+
   &--gutters-small {
     margin-left: -15px;
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import classnames from 'classnames/bind';
 import styles from './row.scss';
 
@@ -21,8 +20,8 @@ const Row = (props) => {
         [`grid--${direction}`]: direction,
         'grid--center': center,
         [`grid--gutters-${gutters}`]: gutters,
-        [`row--align-items-${alignItems}`]: alignItems,
-        [`row--justify-content-${justifyContent}`]: justifyContent,
+        [`grid--align-items-${alignItems}`]: alignItems,
+        [`grid--justify-content-${justifyContent}`]: justifyContent,
       })}
     >
       {children}

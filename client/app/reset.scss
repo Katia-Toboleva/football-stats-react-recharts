@@ -19,3 +19,17 @@
   align-items: center;
   position: relative;
 }
+
+.intro-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  background-color: rgba(211, 211, 211, 0.521);
+  padding: 70px;
+
+  & >:first-child {
+    margin-bottom: 10px;
+  }
+}

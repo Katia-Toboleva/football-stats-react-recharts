@@ -12,6 +12,7 @@ const Text = (props) => {
     cases,
     weight,
     text,
+    block,
   } = props;
 
   return (
@@ -21,6 +22,7 @@ const Text = (props) => {
       [`text--cases-${cases}`]: cases,
       [`text--weight-${weight}`]: weight,
       'text--center': center,
+      'text--block': block,
     })}
     >
       {text}

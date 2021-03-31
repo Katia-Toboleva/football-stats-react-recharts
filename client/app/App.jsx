@@ -62,8 +62,21 @@ const App = () => {
           onClick={handleSearchClick}
         />
 
-        {fetchResultsRequestStatus === null && (
-          <div>HELLO</div>
+        {(fetchResultsRequestStatus === null && isEmpty(searchResult)) && (
+          <div className={styles['intro-container']}>
+            <Text
+              size="large"
+              color="dark-blue"
+              text="Welcome!"
+              block
+            />
+            <Text
+              size="medium"
+              color="dark-blue"
+              text="Please use the filters to search for the stats of football games."
+              block
+            />
+          </div>
         )}
 
         {fetchResultsRequestStatus === 'pending' && (

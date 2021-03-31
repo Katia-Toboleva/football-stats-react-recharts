@@ -12,7 +12,7 @@
   }
 
   &--size-large {
-    font-size: 36px;
+    font-size: 42px;
   }
 
   &--color-white {
@@ -49,5 +49,9 @@
 
   &--center {
     text-align: center;
+  }
+
+  &--block {
+    display: block;
   }
 }

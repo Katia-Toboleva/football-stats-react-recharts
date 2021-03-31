@@ -9,7 +9,7 @@
 
 
 ## Description:
-The app is built for getting stats about football matches. It has 3 filters: Team, Player and Match. Once Player and Match filters are chosen, the stats are presented in a radar-chart with some details about the game and the player.
+The app gets stats about football matches. It has 3 filters: Team, Player and Match. Once Player and Match filters are chosen, the stats are presented in a radar-chart with some details about the game and the player.
 
 ## Technologies:
 JavaScript, React, React Hooks, Recharts, SCSS, SCSS Modules, localStorage HTML, Webpack, Babel, Eslint, Stylelint.

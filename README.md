@@ -15,9 +15,11 @@ The app is built for getting stats about football matches. It has of three filte
 JavaScript, React, React Hooks, Recharts, SCSS, SCSS Modules, localStorage HTML, Webpack, Babel, Eslint, Stylelint.
 
 ## Demo:
-1.
+1. First search with refresh:
+![first-search-with refresh](https://user-images.githubusercontent.com/66952678/113122943-066cf980-920c-11eb-9510-e1a715f591ea.gif)
 
-2.
+2. Search and Radar Chart
+![search](https://user-images.githubusercontent.com/66952678/113123322-62d01900-920c-11eb-9b09-6d093d245735.gif)
 
 ## Installation and viewing
 1. Open the repo in your code editor

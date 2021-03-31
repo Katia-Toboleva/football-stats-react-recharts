@@ -62,7 +62,7 @@ const App = () => {
           onClick={handleSearchClick}
         />
 
-        {(fetchResultsRequestStatus === null && isEmpty(searchResult)) && (
+        {(fetchResultsRequestStatus === null && isEmpty(searchResult)) && !localStorage.getItem('results') && (
           <div className={styles['intro-container']}>
             <Text
               size="large"
